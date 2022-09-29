@@ -1,0 +1,46 @@
+﻿@page "/solver"
+@page "/solver/{InputSudoku}"
+@inject NavigationManager UriHelper
+@inject HttpClient Http
+@inject Solver Solver
+@inject SudokuFactory SudokuFactory
+@inject SudokuUtils SudokuUtils
+
+<MudText>@_message</MudText>
+
+<div class="d-flex flex-grow-1 gap-1" style="width: 1100px;">
+	@if (LoadedSudoku)
+	{
+			<MudPaper Height="660px" Width="660px" Class="d-flex align-center justify-center ma-2" Square="true" Outlined="true">
+				<MudGrid Spacing="0" Class="align-center" Justify="Justify.Center">
+				@for (int y = 0; y < 9; y++)
+				{
+					int tempy = y;
+					@for (int x = 0; x < 9; x++)
+					{
+						int tempx = x;
+						string s = GetBorderStyle(tempx, tempy);
+									<MudItem>
+										<MudPaper Elevation="0">	
+											<CellPaper _Cell="_sudoku.Cells[tempx,tempy]" Class=@s />
+										</MudPaper>
+									</MudItem>
+					}
+				}
+				</MudGrid>
+
+			</MudPaper>
+	}
+	<MudPaper Width="440px" Class="ma-2 justify-center align-center">
+		<MudButton Class="ma-1" OnClick="LoadNewPuzzle" Variant="Variant.Filled">New Puzzle</MudButton>
+		<MudButton Class="ma-1" OnClick="PopulateNotesAsync" Variant="Variant.Filled">Generate Notes</MudButton>
+		<br />
+		<MudButton Class="ma-1" OnClick="(() =>SolveBacktrace())" Variant="Variant.Filled">SolveBacktrace</MudButton>
+		<MudButton Class="ma-1" OnClick="SolveWaveCollapse" Variant="Variant.Filled">Wave Function Collapse</MudButton>
+		<br />
+		<MudSwitch Class="ma-1" @bind-Checked="@UpdateEvery" Label="Show Every Step" Color="Color.Primary"/>
+		<MudSlider Class="pl-4 pr-4 pb-4" Disabled="@UpdateEvery" @bind-Value="@UpdateFrequency" ValueLabel="true" Step="10" Min="10" Max="100">Update Frequency</MudSlider>
+		<br />
+		<MudText>Showing every @UpdateFrequency Steps</MudText>
+	</MudPaper>
+</div>

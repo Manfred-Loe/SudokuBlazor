@@ -1,0 +1,13 @@
+﻿<MudPaper Width="66px" Height="66px" Class="@Class" Square="true" Outlined="true">
+	<MudTextField @bind-Value="BoxCell.Number" Immediate="true" Class="mb-4 align-center justify-center" Style="font-size: 30px;" MaxLength="1" />
+</MudPaper>
+
+
+
+
+@code {
+	[Parameter]
+	public Cell BoxCell { get; set; } = new(0);
+	[Parameter]
+	public string Class { get; set; } = "d-flex align-center justify-center";
+}

@@ -3,7 +3,34 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SudokuLib", "SudokuLib\SudokuLib.csproj", "{3AB06D39-7DE9-458C-A60B-C078737210B1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleTester", "ConsoleTester\ConsoleTester.csproj", "{33390AA0-2B4C-481C-A05B-925DA3D7D316}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MudSudoku", "MudSudoku\MudSudoku.csproj", "{0528BEAF-127D-41A3-93E3-C7AAD947EE1E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3AB06D39-7DE9-458C-A60B-C078737210B1} = {3AB06D39-7DE9-458C-A60B-C078737210B1}
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3AB06D39-7DE9-458C-A60B-C078737210B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AB06D39-7DE9-458C-A60B-C078737210B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AB06D39-7DE9-458C-A60B-C078737210B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AB06D39-7DE9-458C-A60B-C078737210B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33390AA0-2B4C-481C-A05B-925DA3D7D316}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33390AA0-2B4C-481C-A05B-925DA3D7D316}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33390AA0-2B4C-481C-A05B-925DA3D7D316}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33390AA0-2B4C-481C-A05B-925DA3D7D316}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0528BEAF-127D-41A3-93E3-C7AAD947EE1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0528BEAF-127D-41A3-93E3-C7AAD947EE1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0528BEAF-127D-41A3-93E3-C7AAD947EE1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0528BEAF-127D-41A3-93E3-C7AAD947EE1E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection

@@ -1,0 +1,39 @@
+﻿<MudPaper Width="66px" Height="66px" Class=@Class Square="true" Outlined="true">
+
+
+	@*ALL cells are either "clue" or empty post solving atm- not sure why*@
+	@if (_Cell.Clue)
+	{
+		<MudText Style="font-size: 30px;">@_Cell.Number</MudText>
+	}
+	else if (_Cell.Number != 0)
+	{
+		<MudText Style="@($"font-size: 30px;color:{Colors.Blue.Darken1}; ")">@_Cell.Number</MudText>	
+	}
+	else
+	{
+		<MudGrid Spacing="0" Justify="Justify.Center" Class="align-center">
+			@for (int i = 1; i < 10; i++)
+			{
+				int x = i;
+					<MudItem>
+						<MudPaper Height="20px" Width ="20px" Class="d-flex align-center justify-center border-dotted" Outlined="true" Square="true">
+							<MudText Style="font-size: 12px ">
+							@if (_Cell.Candidates.Contains(x))
+							{
+								@x
+							}
+							</MudText>
+						</MudPaper>
+					</MudItem>
+			}
+		</MudGrid>
+	}
+</MudPaper>
+
+@code {
+	[Parameter, EditorRequired]
+	public Cell _Cell { get; set; } = new();
+	[Parameter]
+	public string? Class { get; set; } = "d-flex align-center justify-center";
+}
