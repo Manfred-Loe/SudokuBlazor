@@ -5,6 +5,7 @@
 @inject Solver Solver
 @inject SudokuFactory SudokuFactory
 @inject SudokuUtils SudokuUtils
+@inject IDialogService DialogService
 
 <MudText>@_message</MudText>
 
@@ -33,7 +34,7 @@
 	}
 	<MudPaper Width="440px" Class="ma-2 justify-center align-center">
 		<MudButton Class="ma-1" OnClick="LoadNewPuzzle" Variant="Variant.Filled">New Puzzle</MudButton>
-		<MudButton Class="ma-1" OnClick="PopulateNotesAsync" Variant="Variant.Filled">Generate Notes</MudButton>
+		<MudButton Class="ma-1" OnClick="PopulateNotesAsync" Variant="Variant.Filled">Generate Candidates</MudButton>
 		<br />
 		<MudButton Class="ma-1" OnClick="(() =>SolveBacktrace())" Variant="Variant.Filled">SolveBacktrace</MudButton>
 		<MudButton Class="ma-1" OnClick="SolveWaveCollapse" Variant="Variant.Filled">Wave Function Collapse</MudButton>

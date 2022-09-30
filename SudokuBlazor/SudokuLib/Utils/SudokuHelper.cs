@@ -214,9 +214,9 @@ internal static class SudokuHelper
 	}
 	public static void PopulateCandidates(Sudoku p)
 	{
-		for (int x = 0; x < 9; x++)
+		for (int y = 0; y < 9; y++)
 		{
-			for (int y = 0; y < 9; y++)
+			for (int x = 0; x < 9; x++)
 			{
 				if (p.Cells[x, y].Number == 0 && p.Cells[x, y].Clue == false)
 				{

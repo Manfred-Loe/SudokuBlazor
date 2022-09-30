@@ -41,8 +41,8 @@ public class SudokuLoader
 		int[,] sudoku = new int[9, 9];
 		for(int i = 0; i < 81; i++)
 		{
-			int x = i / 9;
-			int y = i % 9;
+			int x = i % 9;
+			int y = i / 9;
 			sudoku[x,y] = Int32.Parse(s[i].ToString());
 		}
 		return new Sudoku(sudoku);

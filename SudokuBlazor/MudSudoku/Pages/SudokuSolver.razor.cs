@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
+using MudBlazor;
 using SudokuLib.IO;
 using SudokuLib.Puzzle;
 using System.Reflection.Metadata;
@@ -35,10 +36,14 @@ public partial class SudokuSolver
 				_sudoku = SudokuFactory.ConvertFromString(InputSudoku);
 				LoadedSudoku = true;
 			}
-
-			
+			else
+			{
+				InvalidMessage();
+				_sudoku = SudokuFactory.GetRandomSudoku();
+				LoadedSudoku = true;
+			}
 		}
-		else if(InputSudoku == null || !LoadedSudoku)
+		else
 		{
 			_sudoku = SudokuFactory.GetRandomSudoku();
 			LoadedSudoku = true;
@@ -51,6 +56,14 @@ public partial class SudokuSolver
 		if (regex.IsMatch(s)) { return true; }
 		return false;
 	}
+
+	private async void InvalidMessage()
+	{
+		
+		bool? result = await DialogService.ShowMessageBox("Warning", "Input Sudoku was Invalid, generating new random sudoku", yesText: "Ok", cancelText: "Return");
+		
+	}
+
 	public void LoadNewPuzzle()
 	{
 		_sudoku = SudokuFactory.GetRandomSudoku();
@@ -129,7 +142,5 @@ public partial class SudokuSolver
 		}
 		return borderstyle;
 	}
-
-
 
 }
