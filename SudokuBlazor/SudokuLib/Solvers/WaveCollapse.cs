@@ -4,7 +4,6 @@ internal class WaveCollapse
 {
 	private readonly Stack<Choice> choices = new();
 	private Choice previousChoice;
-	int counter = 0;
 	public WaveCollapse() { }
 
 	public Sudoku Solve(Sudoku p)
@@ -28,10 +27,9 @@ internal class WaveCollapse
 
 		while (!SudokuHelper.CheckIfFull(p))
 		{
-			counter++;
 			SudokuHelper.RecalculateCandidates(p);
 			if (CheckForEmptyNotes(p)) { StepBack(p); continue; }
-			if (CheckForSingles(p)) { continue; }
+			if (CheckForSingles(p)) { yield return p; continue; }
 			SetNumber(p, GetLowestEntropy(p));
 			yield return p;
 		}
@@ -146,10 +144,6 @@ internal class WaveCollapse
 			previousChoice = stepBack;
 			//reset last attempt back to 0
 			p.Cells[stepBack.X, stepBack.Y].Number = 0;
-		}
-		else
-		{
-			Console.WriteLine($"Broken Puzzle, Counter: {counter}");
 		}
 	}
 

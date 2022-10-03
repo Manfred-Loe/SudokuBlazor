@@ -4,12 +4,14 @@ public class Solver
 {
 	private Backtrace _backtrace;
 	private WaveCollapse _waveCollapse;
+	private ImprovedBacktrace _improvedBacktrace;
 
 
 	public Solver() 
 	{
 		_backtrace = new Backtrace();
 		_waveCollapse = new WaveCollapse();
+		_improvedBacktrace = new ImprovedBacktrace();
 	}
 
 	public Sudoku Backtrace(Sudoku sudoku)
@@ -20,6 +22,17 @@ public class Solver
 	public IEnumerable<Sudoku> YieldBacktrace(Sudoku sudoku)
 	{
 		foreach(var puzzle in _backtrace.SolveYield(sudoku))
+		{
+			yield return puzzle;
+		}
+	}
+	public Sudoku ImprovedBacktrace(Sudoku sudoku)
+	{
+		return _improvedBacktrace.Solve(sudoku);
+	}
+	public IEnumerable<Sudoku> YieldImprovedBacktrace(Sudoku sudoku)
+	{
+		foreach(var puzzle in _improvedBacktrace.SolveYield(sudoku))
 		{
 			yield return puzzle;
 		}

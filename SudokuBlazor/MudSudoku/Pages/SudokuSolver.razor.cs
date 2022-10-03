@@ -20,7 +20,8 @@ public partial class SudokuSolver
 
 	Sudoku _sudoku = new();
 	string _message = string.Empty;
-	int fullcounter = 0;
+	int _fullCounter = 0;
+	bool _DisabledButtons = false;
 
 	protected async override Task OnParametersSetAsync()
 	{
@@ -52,7 +53,7 @@ public partial class SudokuSolver
 	}
 	private bool ValidInputSudoku(string s)
 	{
-		var regex = new Regex(@"[0-9]{81}");
+		var regex = new Regex(@"^[0-9]{81}$");
 		if (regex.IsMatch(s)) { return true; }
 		return false;
 	}
@@ -69,6 +70,7 @@ public partial class SudokuSolver
 	}
 	public async void SolveBacktrace()
 	{
+		ToggleButtons();
 		int counter = 0;
 		if (UpdateEvery) { UpdateFrequency = 1; }
 
@@ -80,7 +82,7 @@ public partial class SudokuSolver
 		foreach (var puzzle in Solver.YieldBacktrace(_sudoku))
 		{
 			counter++;
-			fullcounter++;
+			_fullCounter++;
 			_sudoku = puzzle;
 			if (counter == UpdateFrequency)
 			{
@@ -89,18 +91,20 @@ public partial class SudokuSolver
 				await Task.Delay(1);
 			}
 		}
-		_message = $"Total Steps: {fullcounter}";
+		_message = $"Total Steps: {_fullCounter}";
+		ToggleButtons();
 		StateHasChanged();
 	}
 	public async void SolveWaveCollapse()
 	{
+		ToggleButtons();
 		int counter = 0;
 		if (UpdateEvery) { UpdateFrequency = 1; }
 
 		foreach (var puzzle in Solver.YieldWaveCollapse(_sudoku))
 		{
 			counter++;
-			fullcounter++;
+			_fullCounter++;
 			_sudoku = puzzle;
 			if (counter == UpdateFrequency)
 			{
@@ -109,9 +113,39 @@ public partial class SudokuSolver
 				await Task.Delay(1);
 			}
 		}
-		_message = $"Total Steps: {fullcounter}";
+		_message = $"Total Steps: {_fullCounter}";
+		ToggleButtons();
 		StateHasChanged();
 	}
+	public async void SolveImprovedBacktrace()
+	{
+		ToggleButtons();
+		int counter = 0;
+		if (UpdateEvery) { UpdateFrequency = 1; }
+
+		foreach (var puzzle in Solver.YieldImprovedBacktrace(_sudoku))
+		{
+			counter++;
+			_fullCounter++;
+			_sudoku = puzzle;
+			if (counter == UpdateFrequency)
+			{
+				counter = 0;
+				StateHasChanged();
+				await Task.Delay(1);
+			}
+		}
+		_message = $"Total Steps: {_fullCounter}";
+		ToggleButtons();
+		StateHasChanged();
+
+	}
+
+	public void ToggleButtons()
+	{
+		_DisabledButtons = !_DisabledButtons;
+	}
+
 	public async void PopulateNotesAsync()
 	{
 		await Task.Run(() =>
@@ -120,6 +154,16 @@ public partial class SudokuSolver
 		});
 		StateHasChanged();
 	}
+
+	public async void ClearNotesAsync()
+	{
+		await Task.Run(() =>
+		{
+			SudokuUtils.ClearCandidates(_sudoku);
+		});
+		StateHasChanged();
+	}
+
 	private string GetBorderStyle(int x, int y)
 	{
 		string borderstyle = "d-flex align-center justify-center";

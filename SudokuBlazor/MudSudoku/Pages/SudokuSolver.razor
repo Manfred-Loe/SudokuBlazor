@@ -35,17 +35,23 @@
 
 			</MudPaper>
 	}
-	<MudPaper Width="440px" Class="ma-2 justify-center align-center">
-		<MudButton Class="ma-1" OnClick="LoadNewPuzzle" Variant="Variant.Filled">New Puzzle</MudButton>
-		<MudButton Class="ma-1" OnClick="PopulateNotesAsync" Variant="Variant.Filled">Generate Candidates</MudButton>
+	<MudPaper Width="440px" Class="ma-2 pa-2 justify-center align-center">
+		<MudButton Class="ma-1" OnClick="LoadNewPuzzle" Disabled="@_DisabledButtons" Variant="Variant.Filled">New Puzzle</MudButton>
+		<MudButton Class="ma-1" OnClick="PopulateNotesAsync" Disabled="@_DisabledButtons" Variant="Variant.Filled">Fill Candidates</MudButton>
+		<MudButton Class="ma-1" OnClick="ClearNotesAsync" Disabled="@_DisabledButtons" Variant="Variant.Filled">Clear Candidates</MudButton>
+		
 		<br />
-		<MudButton Class="ma-1" OnClick="(() =>SolveBacktrace())" Variant="Variant.Filled">SolveBacktrace</MudButton>
-		<MudButton Class="ma-1" OnClick="SolveWaveCollapse" Variant="Variant.Filled">Wave Function Collapse</MudButton>
-		<br />
-		<MudSwitch Class="ma-1" @bind-Checked="@UpdateEvery" Label="Show Every Step" Color="Color.Primary"/>
+		<MudSwitch Class="ma-1" @bind-Checked="@UpdateEvery" Disabled="@_DisabledButtons" Label="Show Every Step" Color="Color.Primary"/>
 		<MudSlider Class="pl-4 pr-4 pb-4" Disabled="@UpdateEvery" @bind-Value="@UpdateFrequency" ValueLabel="true" Step="10" Min="10" Max="100">Update Frequency</MudSlider>
 		<br />
 		<MudText>Showing every @UpdateFrequency Steps</MudText>
+		<br />
+		<MudText Class="ma-1" Typo="Typo.h6">Solvers</MudText>
+		<MudButton Class="ma-1" OnClick="(() =>SolveBacktrace())" Disabled="@_DisabledButtons" Variant="Variant.Filled">Backtrace</MudButton>
+		<br />
+		<MudButton Class="ma-1" OnClick="(() =>SolveImprovedBacktrace())" Disabled="@_DisabledButtons" Variant="Variant.Filled">Improved Backtrace</MudButton>
+		<br />
+		<MudButton Class="ma-1" OnClick="SolveWaveCollapse" Disabled="@_DisabledButtons" Variant="Variant.Filled">Wave Function Collapse</MudButton>
 	</MudPaper>
 </div>
 

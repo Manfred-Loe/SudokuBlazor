@@ -1,13 +1,45 @@
-﻿<MudText Typo="Typo.h3" GutterBottom="true">About</MudText>
+﻿<MudText Typo="Typo.h3" Class="ma-2" GutterBottom="true">About</MudText>
 
-<MudText>
+<MudText Class="ma-2">
 	This webapp features several different solvers and shows how those solvers go about solving the puzzle.
 	Descriptions of the solvers can be found below.
 </MudText>	
 
-<MudAlert Severity="Severity.Normal">You can find the source code here: <MudLink Href="https://github.com/Manfred-Loe/SudokuBlazor" Typo="Typo.body2" Color="Color.Inherit"><b>https://github.com/Manfred-Loe/SudokuBlazor</b></MudLink></MudAlert>
+<MudAlert Class="ma-2" Severity="Severity.Normal">You can find the source code here: 
+	<MudLink Href="https://github.com/Manfred-Loe/SudokuBlazor" Typo="Typo.body2" Color="Color.Inherit">
+		<b>https://github.com/Manfred-Loe/SudokuBlazor</b>
+	</MudLink>
+</MudAlert>
+
+<MudText Class="ma-2" Typo="Typo.h6">New Puzzle</MudText>
+<MudText Class="ma-2">
+	The New Puzzle button loads a new puzzle from the many pre-defined puzzles included in the web app. To enter your own puzzle please go to the
+	<MudLink Href="/input_sudoku">Enter Sudoku</MudLink> page and enter your sudoku there.
+</MudText>
+
+<MudText Class="ma-2" Typo="Typo.h6">Generate Candidates</MudText>
+<MudText Class="ma-2">
+	The Generate Candidates button generates the valid candidates for each of the cells in the currently loaded puzzle.
+</MudText>
 
 
-@code {
+<MudText Class="ma-2" Typo="Typo.h6">Backtrace</MudText>
+<MudText Class="ma-2">
+	Backtracing is the simplest solver. This implementation is highly inefficient in that it brute-forces every possible number starting with the first available starting in top
+	row and leftmost unsolved cell. It knows nothing about the candidates the cells could have. 
+	The second more efficient backtrace solves it in roughly the same manner, but it only tries "valid" candidates.
+</MudText>
 
-}
+<MudText Class="ma-2" Typo="Typo.h6">Wave Function Collapse</MudText>
+<MudText Class="ma-2">
+	Wave Function Collapse is my own implementation of a solver based on a randomly-generated rogue-lite that used a similar algorithm to solve the problem of where
+	to place tiles in the game. It is named after the quantum mechanic, but simply put it's a simple backtrace that starts with the cells that have the lowest number of candidates.
+</MudText>
+
+<MudText Class="ma-2" Typo="Typo.h6">Natural Solver</MudText>
+<MudAlert Class="ma-2" Severity="Severity.Info">Not Yet Implemented </MudAlert>
+<MudText Class="ma-2">
+	The Natural Solver attempts to solve the Sudoku as a person might. It starts by checking for naked candidate cells, and moves from there following basic elimination strategies such as
+	hidden pairs/hidden candidates and intersection removal. After simplifying the puzzle as much as it can there it moves onto harder strategies like looking for x-wing/y-wing/swordfish patterns
+	and Singles chains. The other benefit to this solver is it can provide a "Difficulty" rating based on how complicated it was to solve.
+</MudText>

@@ -1,6 +1,7 @@
 Todo before release:
-
-Move
+better controls for input
+alignment on page - better
+error-proofing
 
 Notes to be aware of: 
 
