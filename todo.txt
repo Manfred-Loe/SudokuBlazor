@@ -1,0 +1,9 @@
+Todo before release:
+
+Move
+
+Notes to be aware of: 
+
+Some design choices seem questionable because this was experimental as I went. For example: 
+
+Click box checks the value of the cell it's bound to to display the correct thing. BoxPaper does not check the value and has to be handed the value you want to display. Unsure which I prefer, from the end user perspective it's the same result. In the second example it makes the code for the blazor component really clean and simple which is nice and it gives you the choice if you want or don't want to display the number (you can just not pass that parameter).

@@ -83,6 +83,22 @@ internal static class SudokuHelper
 		}
 		return true;
 	}
+	//True Validation returns true if there is only one solution, either way returns number of solutions
+	public static bool TrueValidation(Sudoku s, out int realCount, int targetCount = 0)
+	{
+		realCount = 0;
+		if (ValidatePuzzle(s))
+		{
+			MultiChecker mc = new();
+			realCount = mc.CheckSolutions(s, targetCount);
+			if(realCount == 1)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
 
 	public static bool NumberInRow(Sudoku p, int row, int n)
 	{

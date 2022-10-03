@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using MudBlazor;
 using SudokuLib.Puzzle;
 
 namespace MudSudoku.Pages;
@@ -27,10 +28,17 @@ public partial class UserInputSudoku
 		await Task.Delay(100);
 		StateHasChanged();
 	}
-	private void LoadSolver()
+	private void SubmitToSolver()
 	{
-		string sudoku = BuildString();
-		UriHelper.NavigateTo($"/solver/{sudoku}");
+		var sudoku = SudokuFactory.ConvertFromString(BuildString());
+		if (!SudokuUtils.ValidateSingleSolution(sudoku))
+		{
+			InvalidBoard();
+		}
+		else
+		{
+			UriHelper.NavigateTo($"/solver/{sudoku}");
+		}
 	}
 	private string BuildString()
 	{
@@ -46,6 +54,12 @@ public partial class UserInputSudoku
 		Console.WriteLine($"Sudoku: {Sudoku}");
 		return Sudoku;
 	}
+
+	private async void InvalidBoard()
+	{
+		await DialogService.ShowMessageBox("Warning", "Sudoku is invalid, please verify numbers are correct.", yesText: "Ok", cancelText: "Return");
+	}
+
 
 	private string GetBorderStyle(int x, int y)
 	{
@@ -82,5 +96,4 @@ public partial class UserInputSudoku
 			}
 		}
 	}
-
 }

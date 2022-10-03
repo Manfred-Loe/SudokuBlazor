@@ -60,8 +60,7 @@ public partial class SudokuSolver
 	private async void InvalidMessage()
 	{
 		
-		bool? result = await DialogService.ShowMessageBox("Warning", "Input Sudoku was Invalid, generating new random sudoku", yesText: "Ok", cancelText: "Return");
-		
+		await DialogService.ShowMessageBox("Warning", "Input Sudoku was Invalid, generating new random sudoku", yesText: "Ok", cancelText: "Return");
 	}
 
 	public void LoadNewPuzzle()

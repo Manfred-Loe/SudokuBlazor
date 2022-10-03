@@ -1,4 +1,5 @@
-﻿@page "/solver"
+﻿@page "/"
+@page "/solver"
 @page "/solver/{InputSudoku}"
 @inject NavigationManager UriHelper
 @inject HttpClient Http
@@ -6,6 +7,8 @@
 @inject SudokuFactory SudokuFactory
 @inject SudokuUtils SudokuUtils
 @inject IDialogService DialogService
+
+<PageTitle>Mud Sudoku Solver</PageTitle>
 
 <MudText>@_message</MudText>
 
@@ -44,4 +47,8 @@
 		<br />
 		<MudText>Showing every @UpdateFrequency Steps</MudText>
 	</MudPaper>
+</div>
+
+<div>
+	<About />
 </div>

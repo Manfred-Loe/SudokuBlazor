@@ -1,34 +1,16 @@
 ﻿<MudPaper Width="66px" Height="66px" Class="@Class" Square="true" Outlined="true">
 	<MudTextField 
-		@bind-Value="Input"
-		@oninput="AttemptAssign"
-		Immediate="true" 
+		@bind-Value="BoxCell.Number"
+		Immediate="true"
 		Class="mb-4 align-center justify-center" 
 		Style="font-size: 30px;" 
 		MaxLength="1"
 	/>
 </MudPaper>
-@*<MudPaper Width="66px" Height="66px" Class="@Class" Square="true" Outlined="true">
-	<input type="text" @bind-value="Input" @oninput="AttemptAssign" class="mb-4 align-center justify-center" style="font-size: 30px; text-align: center;" maxlength="1" />
-</MudPaper>*@
 
 @code {
-	[Parameter]
-	public Cell BoxCell { get; set; } = new(0);
+	[Parameter, EditorRequired]
+	public Cell BoxCell { get; set; } = new();
 	[Parameter]
 	public string Class { get; set; } = "d-flex align-center justify-center";
-	[Parameter]
-	public int? Input { get; set; }
-
-	public void AttemptAssign()
-	{
-		if(Input != null)
-		{
-			BoxCell.Number = (int)Input;
-		}
-		else
-		{
-			Input = null;
-		}
-	}
 }

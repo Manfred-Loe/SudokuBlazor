@@ -1,5 +1,9 @@
 ﻿@page "/input_sudoku"
 @inject NavigationManager UriHelper
+@inject SudokuUtils SudokuUtils
+@inject SudokuFactory SudokuFactory
+@inject IDialogService DialogService
+
 <div class="d-flex flex-grow-1 gap-1" style="width: 1100px;">
 	<MudPaper Height="660px" Width="660px" Class="d-flex align-center justify-center ma-2" Square="true" Outlined="true">
 		@if(_typeMode){
@@ -14,7 +18,7 @@
 					string s = GetBorderStyle(tempx, tempy);
 					<MudItem>
 						<MudPaper Elevation="0">
-							<BoxPaper BoxCell="SudokuCells[tempx,tempy]" Class="@s" />
+								<BoxPaper BoxCell="SudokuCells[tempx,tempy]" Class="@s" />
 						</MudPaper>
 					</MudItem>
 				}
@@ -46,6 +50,6 @@
 	</MudPaper>
 	<MudPaper Width="440px" Class="ma-2 justify-center align-center">
 		<MudSwitch @bind-Checked="@_typeMode" Color="Color.Primary" Class="ma-4" T="bool" Label="Entry Mode Click/Type" />
-		<MudButton Class="ma-1" OnClick="LoadSolver" Variant="Variant.Filled">Send Puzzle</MudButton>
+		<MudButton Class="ma-1" OnClick="SubmitToSolver" Variant="Variant.Filled">Send Puzzle</MudButton>
 	</MudPaper>
 </div>
