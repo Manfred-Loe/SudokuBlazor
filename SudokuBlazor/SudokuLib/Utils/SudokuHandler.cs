@@ -2,11 +2,4 @@
 
 public class SudokuHandler
 {
-
-
-
-
-
-
-
 }

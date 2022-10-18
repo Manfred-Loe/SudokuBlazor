@@ -1,7 +1,9 @@
-Todo before release:
+Todo:
 better controls for input
-alignment on page - better
 error-proofing
+Persistent settings - cookies?
+"Not Secure" - Security settings
+
 
 Notes to be aware of: 
 

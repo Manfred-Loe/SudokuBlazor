@@ -6,20 +6,16 @@ namespace ConsoleTester.Test;
 
 internal class SudokuTester
 {
+    public SudokuTester() { }
 
-	public SudokuTester() { }
-
-	public void Run()
-	{
-		SudokuFactory sudokuFetcher = new SudokuFactory();
-		Sudoku s = sudokuFetcher.GetRandomSudoku();
-		Solver solver = new Solver();
-		DrawSudoku.Print(s);
-		s = solver.Backtrace(s);
-		DrawSudoku.Print(s);
-
-	}
-
-
-
+    public static void Run()
+    {
+        var sudokuFetcher = new SudokuFactory();
+        sudokuFetcher.LoadSudokusFromFile();
+        Sudoku s = sudokuFetcher.GetRandomSudoku();
+        var solver = new Solver();
+        DrawSudoku.Print(s);
+        s = solver.Backtrace(s);
+        DrawSudoku.Print(s);
+    }
 }
